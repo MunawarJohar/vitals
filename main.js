@@ -245,8 +245,8 @@ function drawLineChart() {
 }
 
 function  ccalc(xval){
-var cal1=xval*4
-var cal2=xval*5
+var cal1=xval* \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} * i\hbar\frac{\partial}{\partial t}\Psi(\vector x,t) = -\frac{\hbar}{2m}\nabla^2\Psi(vector x,t) + V(\vector x) \Psi(\vex x,t) *\hat f(\xi) = \int_{-\ infty}^\infty f(x)e^{-2\pi I \xi x}\mathrm{d}x
+var cal2=xval*28.7*36+48/2
 var cal3=xval*6
 document.getElementById('signalcal1').innerHTML = `C1:`+cal1;
 document.getElementById('signalcal2').innerHTML = `C2:`+cal2;

@@ -37,14 +37,15 @@ let constraintsObj = {
 
 function setWH() {
   let [w, h] = [video.videoWidth, video.videoHeight];
-  document.getElementById('delay').innerHTML = `Frame compute delay: ${delay}`;
-  document.getElementById('resolution').innerHTML = `Video resolution: ${w} x ${h}`;
+  document.getElementById('solar-nuclear-photovoltaic-delay').innerHTML = `Frame compute delay: ${delay}`;
+  document.getElementById('solar-nuclear-photovoltaic-resolution').innerHTML = `Video resolution: ${w} x ${h}`;
   c_tmp.setAttribute('width', w);
   c_tmp.setAttribute('height', h);
 }
 
 function init() {
   c_tmp = document.getElementById('output-canvas');
+  c_tmp.style.display = 'none';
   if (inProduction) {
     c_tmp.style.display = 'none';
   }
@@ -79,7 +80,7 @@ function computeFrame() {
       // console.log(`nFrame = ${nFrame}`);
       // console.log(`ac = ${acdc}`);
       // console.log(`ac-detrended = ${detrend(acdc)}`);
-      document.getElementById('signal-window').innerHTML = `nWindow: ${nFrame / WINDOW_LENGTH}`;
+      document.getElementById('solar-nuclear-photovoltaic-signal-window').innerHTML = `nWindow: ${nFrame / WINDOW_LENGTH}`;
       if ((nFrame / 100) % 2 == 0) {
         isSignal = 1;
         ac = detrend(acdc);
@@ -94,12 +95,12 @@ function computeFrame() {
 
     xMeanArr.push(xMeanData);
 
-    document.getElementById('frame-time').innerHTML = `Frame time: ${xMeanData.time.toFixed(2)}`;
-    document.getElementById('video-time').innerHTML = `Video time: ${(video.currentTime.toFixed(2))}`;
-    document.getElementById('signal').innerHTML = `X: ${xMeanData.x}`;
+    document.getElementById('solar-nuclear-photovoltaic-frame-time').innerHTML = `Frame time: ${xMeanData.time.toFixed(2)}`;
+    document.getElementById('solar-nuclear-photovoltaic-video-time').innerHTML = `Video time: ${(video.currentTime.toFixed(2))}`;
+    document.getElementById('solar-nuclear-photovoltaic-signal').innerHTML = `X: ${xMeanData.x}`;
     
     const fps = (++frameCount / video.currentTime).toFixed(3);
-    document.getElementById('frame-fps').innerHTML = `Frame count: ${frameCount}, FPS: ${fps}`;
+    document.getElementById('solar-nuclear-photovoltaic-frame-fps').innerHTML = `Frame count: ${frameCount}, FPS: ${fps}`;
 
     ctx_tmp.putImageData(frame, 0, 0);
   }
@@ -224,15 +225,15 @@ function updateData() {
   // if (lineArr.length > 1) {
   lineArr.shift();
   // }
-  d3.select("#chart").datum(lineArr).call(chart);
+  d3.select("#solar-nuclear-photovoltaic-chart").datum(lineArr).call(chart);
 }
 
 function resize() {
   if (d3.select("#chart svg").empty()) {
     return;
   }
-  chart.width(+d3.select("#chart").style("width").replace(/(px)/g, ""));
-  d3.select("#chart").call(chart);
+  chart.width(+d3.select("#solar-nuclear-photovoltaic-chart").style("width").replace(/(px)/g, ""));
+  d3.select("#solar-nuclear-photovoltaic-chart").call(chart);
 }
 
 function drawLineChart() {
@@ -240,15 +241,83 @@ function drawLineChart() {
 
   seedData();
   window.setInterval(updateData, 100);
-  d3.select("#chart").datum(lineArr).call(chart);
+  d3.select("#solar-nuclear-photovoltaic-chart").datum(lineArr).call(chart);
   d3.select(window).on('resize', resize);
 }
-
-function  ccalc(xval){
-var cal1=xval*4
-var cal2=xval*5
-var cal3=xval*6
-document.getElementById('signalcal1').innerHTML = `C1:`+cal1;
-document.getElementById('signalcal2').innerHTML = `C2:`+cal2;
-document.getElementById('signalcal3').innerHTML = `C3:`+cal3;
+ // Function to generate unique IDs
+function generateID(num) {
+  return "cal" + num;
 }
+
+// Function to create and populate the table
+function createTable() {
+  var tbody = document.getElementById("table-body");
+  var count = 1; // To keep track of the calculation ID
+
+  for (var row = 1; row <= 10; row++) {
+      var tr = document.createElement("tr");
+      var td = document.createElement("td");
+      td.textContent = row;
+      tr.appendChild(td);
+
+      for (var col = 1; col <= 10; col++) {
+          var td = document.createElement("td");
+          var div = document.createElement("div");
+          div.id = generateID(count++);
+          div.textContent = "Content";
+          td.appendChild(div);
+          tr.appendChild(td);
+      }
+
+      tbody.appendChild(tr);
+  }
+}
+
+// Call the function to generate the table
+createTable();
+
+        function ccalc(xval) {
+          // Array of calculation variables
+          var cal = [
+              xval * 4,
+              xval * 5,
+              xval * 6,
+              xval * (45 + 3),
+              xval * ((45 * 3) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 3) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 3) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              xval * ((45 * 8) / 2),
+              // add more calculations here manually up to the 100th calculation
+          ];
+      
+          // Loop through the calculation variables
+          for (var i = 0; i < cal.length; i++) {
+              // Create the ID dynamically
+              var calID = 'cal' + (i + 1);
+      
+              // Create the content string
+              var content = 'C' + (i + 1) + ': ' + cal[i];
+      
+              // Update the content of the div
+              document.getElementById(calID).innerHTML = content;
+          }
+      }
+      
+

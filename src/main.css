@@ -27,7 +27,7 @@ header>img{width: 50px;
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    background-color: #f3f3f3;
+    background-color: #f3f3f300;
 }
 #record{  
     font-size: 10px;
@@ -40,3 +40,9 @@ header>img{width: 50px;
     font-family: "After Burner";
 cursor: pointer;}
 #record img{height: 30px;}
+
+#video{position: fixed;
+    opacity: .5;
+    top: 0;
+    width: 100%;
+    left: 0;z-index:-1;}

@@ -5,164 +5,262 @@
     <meta charset="UTF-8">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <title>SkyNet Biometrics Security</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/main.css">
+    <style>
+        @font-face {
+            font-family: "After Burner";
+            src: url("src/G7AfterBurnerTTF.ttf");
+        }
+
+        body {
+            font-family: "After Burner", serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .btn {
+            display: flex;
+            padding: 5px;
+            justify-content: center;
+            align-items: center;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .btn div {
+            line-height: 30px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            header h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px;
+            }
+
+            .btn img {
+                height: 40px;
+            }
+
+            .btn div {
+                line-height: 40px;
+            }
+
+            main {
+                padding: 40px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <style>
-  @font-face {
-        font-family: "After Burner";
-        src: url("src/G7AfterBurnerTTF.ttf");
-      }
 
-      body {
-        font-family: "After Burner", serif;
-      }
-      .backcanvas{    position: absolute;
-    top: 0;
-    opacity: .5;z-index: -1;}
-    .soundon{color: #000;}
-    .btn{display: flex;padding: 5px;}
-    .btn div{height: 50px;line-height: 50px;}
-    </style>
-    
     <header>
         <h2>BIOLOGICAL METRIC SECURITY<img src="img/437-4379298_8-bit-heart-green-tata-bt21-pixel-art.png"></h2>
         <img src="img/playstore.png">
     </header>
-  
+
     <main>
-        <div class="btn"> <img  src="src/20230516_104626.png" height="50px" id="record"><div>PPG</div></div>
-   
-      <!--  <button id="record">BIOMETRICS<img src="img/neon-fingerprint-animation.jpg"></button>-->
+        <div class="btn"> <img src="src/20230516_104626.png" height="30px" id="record"><div>PPG</div></div>
+
         <div>
             <video id='video'></video>
         </div>
         <div>
             <canvas id="output-canvas"></canvas>
         </div>
-        <div id="chart"></div>
-        <p id="resolution"></p>
-        <p id="delay"></p>
-        <p id="frame-fps"></p>
-        <p id="frame-time"></p>
-        <p id="video-time"></p>
-        <p id="signal"></p>
-        <p id="signal-window"></p>
-        <p id="signalcal1"></p>
-        <p id="signalcal2"></p>
-        <p id="signalcal3"></p>
-      </main>
-    <script src="./src/real-time-line-chart.js"></script>
-    <script src="./src/main.js"></script>
-   <div class="btn"> <img src="src/20230516_104626.png" height="50px" id="openaudio"><div>SOUND</div></div>
-  
-   <div id="container"></div>
-    <script id="rendered-js" type="module">
-        /**
-         * for documentation and more demos,
-         * visit https://audiomotion.dev
-         */
-        
-        // load module from Skypack CDN
-        import AudioMotionAnalyzer from 'https://cdn.skypack.dev/audiomotion-analyzer?min';
-        
-        // instantiate analyzer
-        const audioMotion = new AudioMotionAnalyzer(
-        document.getElementById('container'),
-        {
-          gradient: 'rainbow',
-          height: window.innerHeight - 300,
-          showScaleY: true });
-        
-        
-        
-        // display module version
-        //document.getElementById('version').innerText = `v${AudioMotionAnalyzer.version}`;
-        
-        // toggle microphone on/off
-        const micButton = document.getElementById('openaudio');
-        
-        micButton.addEventListener('click', () => {
-          if (navigator.mediaDevices) {
-              navigator.mediaDevices.getUserMedia({ audio: true, video: false }).
-              then(stream => {
-                // create stream using audioMotion audio context
-                const micStream = audioMotion.audioCtx.createMediaStreamSource(stream);
-                // connect microphone stream to analyzer
-                audioMotion.connectInput(micStream);
-                // mute output to prevent feedback loops from the speakers
-                audioMotion.volume = 0;
-              }).
-              catch(err => {
-                alert('Microphone access denied by user');
-              });
-            } else
-            {
-              alert('User mediaDevices not available');
-            }
-          });
-            // disconnect all input audio sources
-          //  audioMotion.disconnectInput();
-        
-        
-        //# sourceURL=pen.js
-            </script>
+        <div id="solar-nuclear-photovoltaic-chart"></div>
+        <p id="solar-nuclear-photovoltaic-resolution"></p>
+        <p id="solar-nuclear-photovoltaic-delay"></p>
+        <p id="solar-nuclear-photovoltaic-frame-fps"></p>
+        <p id="solar-nuclear-photovoltaic-frame-time"></p>
+        <p id="solar-nuclear-photovoltaic-video-time"></p>
+        <p id="solar-nuclear-photovoltaic-signal"></p>
+        <p id="solar-nuclear-photovoltaic-signal-window"></p>
 
-    <script src="./src/real-time-line-chart.js"></script>
-    <script src="./src/main.js"></script>
-   <div class="btn"> <img src="src/20230516_104626.png" height="50px" id="openaudio"><div>SOUND</div></div>
-  
-   <div id="container"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                    <th>Column 4</th>
+                    <th>Column 5</th>
+                    <th>Column 6</th>
+                    <th>Column 7</th>
+                    <th>Column 8</th>
+                    <th>Column 9</th>
+                    <th>Column 10</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+    </main>
+
+    <div class="btn"> <img src="src/20230516_104626.png" height="30px" id="openaudio"><div>SPECTRUM</div></div>
+
+    <div id="container"></div>
+    <script src="src/real-time-line-chart.js"></script>
+    <script src="src/main.js"></script>
     <script id="rendered-js" type="module">
         /**
          * for documentation and more demos,
          * visit https://audiomotion.dev
          */
-        
+
         // load module from Skypack CDN
         import AudioMotionAnalyzer from 'https://cdn.skypack.dev/audiomotion-analyzer?min';
-        
+
         // instantiate analyzer
         const audioMotion = new AudioMotionAnalyzer(
-        document.getElementById('container'),
-        {
-          gradient: 'rainbow',
-          height: window.innerHeight - 300,
-          showScaleY: true });
-        
-        
-        
+            document.getElementById('container'), {
+                gradient: 'rainbow',
+                height: window.innerHeight - 300,
+                showScaleY: true,
+                showBgColor: true,
+                overlay: true,
+                bgAlpha: 0
+            }
+        );
+
         // display module version
         //document.getElementById('version').innerText = `v${AudioMotionAnalyzer.version}`;
-        
+
         // toggle microphone on/off
         const micButton = document.getElementById('openaudio');
-        
+
         micButton.addEventListener('click', () => {
-          if (navigator.mediaDevices) {
-              navigator.mediaDevices.getUserMedia({ audio: true, video: false }).
-              then(stream => {
-                // create stream using audioMotion audio context
-                const micStream = audioMotion.audioCtx.createMediaStreamSource(stream);
-                // connect microphone stream to analyzer
-                audioMotion.connectInput(micStream);
-                // mute output to prevent feedback loops from the speakers
-                audioMotion.volume = 0;
-              }).
-              catch(err => {
-                alert('Microphone access denied by user');
-              });
-            } else
-            {
-              alert('User mediaDevices not available');
+            if (navigator.mediaDevices) {
+                navigator.mediaDevices.getUserMedia({ audio: true, video: false }).
+                then(stream => {
+                    // create stream using audioMotion audio context
+                    const micStream = audioMotion.audioCtx.createMediaStreamSource(stream);
+                    // connect microphone stream to analyzer
+                    audioMotion.connectInput(micStream);
+                    // mute output to prevent feedback loops from the speakers
+                    audioMotion.volume = 0;
+
+                }).
+                catch(err => {
+                    alert('Microphone access denied by user');
+                });
+            } else {
+                alert('User mediaDevices not available');
             }
-          });
-            // disconnect all input audio sources
-          //  audioMotion.disconnectInput();
-        
-        
+
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    // Creating an audio context
+                    var audioContext = new AudioContext();
+                    // Creating a media stream source node
+                    var source = audioContext.createMediaStreamSource(stream);
+                    // Creating a script processor node to analyze audio data
+                    var scriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+                    // Connect the source to the scriptNode
+                    source.connect(scriptNode);
+                    // Connect the scriptNode to the destination (
+                    // Connect the scriptNode to the destination (audio output)
+                    scriptNode.connect(audioContext.destination);
+
+                    // Define a function to process audio data
+                    scriptNode.onaudioprocess = function(audioProcessingEvent) {
+                        // Get the input buffer (contains audio data)
+                        var inputBuffer = audioProcessingEvent.inputBuffer;
+                        // Get the data from the first channel
+                        var inputData = inputBuffer.getChannelData(0);
+
+                        // Calculate the volume level
+                        var volume = 0;
+                        for (var i = 0; i < inputData.length; i++) {
+                            volume += Math.abs(inputData[i]);
+                        }
+                        volume /= inputData.length;
+
+                        // Output the volume (you can do whatever you want with it)
+                        console.log("Volume:", volume);
+                    };
+                })
+                .catch(function(err) {
+                    console.error('Error accessing microphone:', err);
+                });
+        });
+        // disconnect all input audio sources
+        //  audioMotion.disconnectInput();
+
+
         //# sourceURL=pen.js
-            </script>
-</body></html>
+
+        // Requesting access to the user's microphone
+    </script>
+</body>
+
+</html>
